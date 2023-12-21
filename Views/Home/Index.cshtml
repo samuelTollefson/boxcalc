@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    if (@Model.TotalRoutes == 0)
+    {
+        <div>@Model.Text</div>
+        <input type="text" name="totalRoutes" />
+        <input type="submit" />
+        <input type="hidden" name="currentRoute" value="@Model.CurrentRoute" />
+    }
+    else if (@Model.CurrentRoute <= @Model.TotalRoutes)
+    {
+        <div>@Model.Text</div>
+        <input type="text" name="result" />
+        <input type="submit" />
+        <input type="hidden" name="totalRoutes" value="@Model.TotalRoutes" />
+        <input type="hidden" name="currentRoute" value="@Model.CurrentRoute" />
+        <input type="hidden" name="boxes" value="@Model.Boxes" />
+        <input type="hidden" name="bags" value="@Model.Bags" />
+        <div>@Model.Message</div>
+    }
+    else
+    {
+        <div>@Model.Message</div>
+    }
+    
+}
+@* @Model ViewModel
+@using(Html.BeginForm())
+{
+    Result NAme : @Html.TextBoxFor(s => s.Result)
+    <input type="submit" value="Generate report" />
+} *@
+@* <form method="post" action="Index">
+    <div>@Model.Text</div>
+    <input id="number" asp-controller="Home" asp-action="Index" value="@Model.Result">
+    <button id="TestButton" asp-controller="Home" asp-action="Index">@Model.TestButton</button>
+    <label>@Model.Result</label>
+</form> *@
